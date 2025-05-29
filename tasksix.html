@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hoverbtn</title>
+    <style>
+        #tool1,
+        #tool2 {
+            position: absolute;
+            background-color: blue;
+            color: rgb(15, 15, 15);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+
+        }
+        #btn1:hover,#btn2:hover{
+            background-color: blueviolet;
+            transition: 1s;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <div style="float: left;">
+        <div style="margin:5px;" id="tool1">tool tip</div>
+        <button style="display: flex; padding:5px;" id="btn1">Button1</button>
+    </div>
+
+    <div style="float: left; margin-left:5px">
+        <div id="tool2">tool tip2</div><br><br>
+        <button style="display: flex; padding:5px; " id="btn2">Button2</button>
+    </div>
+
+    <script>
+        const button1 = document.getElementById("btn1");
+        const tooltip1 = document.getElementById("tool1");
+        const Button2 = document.getElementById("btn2");
+        const tooltip2 = document.getElementById("tool2");
+
+        let buttons = [button1, Button2];
+        let tooltips = [tooltip1, tooltip2];
+
+
+        buttons.forEach((button, index) => {
+
+            button.addEventListener("mouseover", function () {
+                const tooltip = tooltips[index];
+
+                tooltips[index].style.display = "block";
+                //alert(`butoon : ${button.offsetTop} tooltip: ${tooltip.offsetHeight}`);
+                
+                
+                let tooltipTop = button.offsetTop - tooltip.offsetHeight;
+                //alert(tooltipTop);
+                // Check if there's enough space above
+                if (tooltipTop <= 1) { // If tooltip would go off-screen at the top
+                    //alert("must below");
+                    tooltipTop = button.offsetTop + button.offsetHeight; // Move below instead
+                    tooltip.style.top=`${tooltipTop}px`;
+                }
+
+            });
+
+            button.addEventListener("mouseout", function () {
+                tooltips[index].style.display = "none";
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

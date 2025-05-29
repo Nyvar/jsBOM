@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #innerfield{
+        border:solid white;
+        
+    }
+</style>
+
+<body>
+    <div id="out"
+        style="background-color: darkgreen; width:60vw; height:60vh;justify-content:center; align-items:center; display:flex;">
+
+        <div id="innerfield" style="background-color:rgb(3, 37, 3);width:80%; height:80%; padding:20px;  ">
+            <img src="img/ball.png" id="ball" style="width:30px; height:30px; position:absolute; transition:2s;">
+        </div>
+    </div>
+    <script>
+        const div2 = document.getElementById('innerfield');
+        const ball = document.getElementById('ball');
+
+        div2.addEventListener('click', function (event) {
+            const rect = div2.getBoundingClientRect();
+            const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width - ball.offsetWidth));
+            const y = Math.max(0, Math.min(event.clientY - rect.top , rect.height - ball.offsetHeight));
+
+            ball.style.left = `${x + (ball.width/2)}px`;
+            ball.style.top = `${y + (ball.height/2)}px`;
+        });
+    </script>
+
+</body>
+
+</html>

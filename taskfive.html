@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listbook</title>
+</head>
+<body >
+    <div>
+        <ol type="number">
+            <li >you've reached sam</li>
+            <li >Haunted adeline</li>
+            <li >Archer's voice</li>
+            <li> if he had been with me</li>
+            <li> If I stay</li>
+        </ol>
+    </div>
+
+    <script>
+
+        let currentbook=null;
+        document.querySelector("ol").addEventListener("click", function(event){
+            
+            if(event.target.tagName==="LI"){
+                if(currentbook){
+                    currentbook.style.backgroundColor="";
+                }
+                currentbook= event.target;
+                currentbook.style.backgroundColor="orange";
+
+
+            }
+        })
+
+    </script>
+</body>
+</html>
